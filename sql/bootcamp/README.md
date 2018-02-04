@@ -3,6 +3,7 @@ This directory contains my work from the complete SQL Bootcamp on Udemy as well 
 Here is the course website:
 https://www.udemy.com/the-complete-sql-bootcamp
 
+```
 Sections before 5 cover:
 Introduction
 Installation of psql
@@ -67,3 +68,4 @@ Views
 
 Secion 14 covers:
 Using psycopg2 to integrate psql with python
+```
