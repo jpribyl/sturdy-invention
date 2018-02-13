@@ -70,6 +70,7 @@ select 	title, rental_rate
 	limit 5;
 
 --now let's do it with a subquery
+--you can make subqueries by putting them in brackets
 select film_id,
 	title,
        	rental_rate 
@@ -180,6 +181,7 @@ select
 	from 
 		employee as a
 
+	--left join ensures that we include anyone without a manager in the table
 	left join 
 		employee as b
 
