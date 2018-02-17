@@ -42,4 +42,56 @@ stocks.matrix
 # MATRIX ARITHMETIC
 ##########################
 
+mat <- matrix(1:25, byrow=T, nrow=5)
 
+#operations are done element wise
+1 / mat
+
+#we can also return boolean matrices! Just like vectors.
+mat > 15
+
+#note that mat*mat is element wise and not true mat multiplcation
+mat * mat
+
+#in order to do true matrix multiplication use %'s
+mat %*% mat
+
+
+##########################
+# MATRIX OPERATIONS
+##########################
+
+#Revisiting the stock matrix - we can do lots of math things easily
+colSums(stocks.matrix)
+rowSums(stocks.matrix)
+rowMeans(stocks.matrix)
+
+#we can bind a new vector to the old matrix! it automatically gives that row a name based on vector name
+fb <- c(111,112,113,120,145)
+tech.stocks <- rbind(stocks.matrix, fb)
+tech.stocks
+
+avg <- rowMeans(tech.stocks)
+avg
+#adding a column to the matrix is easy as well
+tech.stocks <- cbind(tech.stocks, avg)
+tech.stocks
+
+
+##########################
+# MATRIX SELECTION AND INDEXING
+##########################
+
+#sq bkt notation just like vectors
+mat <- matrix(1:50, byrow=T, nrow=5)
+mat[1,]
+mat[,1]
+mat[1:3,]
+mat[4:5, 3:6]
+
+
+##########################
+# FACTOR AND CATEGORICAL MATRICES
+##########################
+
+#aka creating dummy variablef
