@@ -22,6 +22,7 @@
 -- use tutorial1;
 
 
+drop table if exists person_product;
 drop table if exists person;
 drop table if exists address;
 
@@ -39,6 +40,7 @@ insert
 		('church lane')
 ;
 
+drop table if exists person;
 create table person(
 	id int primary key auto_increment,
 	name varchar(50),
@@ -191,7 +193,9 @@ select
 
 select * from product;
 
-drop table if exists person_product;
+-- -----------------------------------
+-- MANY TO MANY
+-- -----------------------------------
 create table person_product(
 
 	person_id int not null,
@@ -206,13 +210,103 @@ insert
 		person_product(person_id, product_id)
 	values
 		(1,3),
+		(1,2),
 		(2,3),
 		(3,2),
 		(1,3),
+		(5,2),
 		(4,3),
 		(1,3)
 ;
 
+select * from person_product;
+select * from person;
 
 
-select * from person_product
+-- now that we've built the tables, let's pull out the purchases that each
+-- person has made and give a count of how many of each item was bought
+select
+	a.name,
+	c.name as product_name,
+	count(*) as number_bought
+
+	from person a
+
+	join person_product b
+	on a.id = b.person_id
+
+	join product c
+	on b.product_id = c.id
+
+	group by a.name, c.name
+
+	order by a.name, number_bought desc
+;
+
+
+-- -----------------------------------
+-- SELF JOINS
+-- -----------------------------------
+
+-- here is an interview question with self joins!
+drop table if exists seats;
+create table seats(
+	id int primary key auto_increment,
+	free bool not null default true
+);
+
+-- the challenge is to pick out all empty pairs of seats
+-- because people in the cinema like to sit next to each other
+insert 
+	into seats(free)
+
+	values
+		(true),
+		(false),
+		(true),
+		(true),
+		(false),
+		(false),
+		(true),
+		(true),
+		(false),
+		(true)
+;
+
+
+select  
+	a.id as free_seat_1,
+	b.id as free_seat_2
+
+	from seats a
+
+	join seats b
+	on a.id = (b.id - 1)
+
+	where a.free = 1
+	and b.free = 1
+;
+
+
+-- -----------------------------------
+-- RESTRICT FKS
+-- -----------------------------------
+
+-- By default, mysql won't let you delete a foreign key (this is called restrict)
+-- but, you can specify it to do something else
+
+-- another option is to cascade which you can do syntactically by:
+
+/*
+create table(
+	stuff here....
+	on delete cascade
+	on update cascade
+);
+*/
+
+-- cascading will delete everything that is referenced by the key for example,
+-- if you have animal > dog > fido and you delete animal, then dog and fido
+-- will also be deleted
+
+-- cascading makes more sense on update than it does on delete
