@@ -115,4 +115,86 @@ select
 -- CONTROL FLOW FUNCTIONS
 -- -----------------------------
 
+/*recall we can select anything, like a string*/
+select 'hello';
+
+/*and that we can do it conditionally*/
+select if(12>9, "hello", "goodbye");
+select if(12<9, "hello", "goodbye");
+
+drop table if exists parts;
+create table parts(
+	id int primary key auto_increment,
+	part_id varchar(20) default null,
+	cat_id varchar(20) not null
+);
+
+/*note that typically if you encounter a lot of null rows, you may want to
+ * redesign the database*/
+insert into parts(part_id, cat_id)
+	values
+		('xyz240', 'ab126'),
+		(null, 'ab128'),
+		('ayz230', 'zb126'),
+		(null, 'kab126'),
+		('yyz240', 'cab126');
+
+
+/*we can select values based on an if statment*/
+select 
+	if(part_id is not null, part_id, cat_id) as identifier
+
+	from parts;
+
+/*in case it is not obvious, the syntax is if(condition, true action, false action)*/
+select 
+	if(part_id is not null, part_id, cat_id) as identifier
+
+	from parts
+	
+	/*we can also use if as part of a where clause*/
+	where if(part_id is not null, part_id, cat_id) = 'ab128';
+
+
+/*
+
+  however, this whole thing could be made more elegant using ifnull.
+  ifnull(exp1, exp2) will return exp2 if exp1 is null. Otherwise it will
+  return exp1. Essentially, it reads like:
+ 
+  if thing1 is null do thing2
+ 
+  otherwise, thing1 is probably fine
+
+*/
+select 
+	ifnull(part_id, cat_id) as identifier 
+	from parts;
+
+
+-- -----------------------------
+-- CASTING
+-- -----------------------------
+/*
+
+works with a limited number of data types
+
+it will take an expression of a type and produce a result of another specified
+type. similar to convert
+
+ */
+
+select cast('1974-05-15' as date);
+select cast('1974-05-15' as char);
+
+show tables;
+
+/*
+in order to concatenate an int with a string, it gets turned into a kind of
+blob type or, we can cast the count as a char*/
+
+select 
+	concat("number of books: ", cast(count(*) as char))
+	from book;
+
 
