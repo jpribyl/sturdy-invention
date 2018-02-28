@@ -248,22 +248,28 @@ begin
 		 *and 1.1. When it is < .5 then alive will be false this will be
 		 *true  with a probability of (.5 - .1) / (1.1 - .1) = .4 or, in
 		 *other words, the subject is dead 40% of the time*/
-
-
 		set alive := round(rand() + .1);
+
+
 		set cur_birth := 
 			-- this could also be done with one interval (as in cur_death)
 			-- but here, I think it is more clear to use two intervals
 			date(now() 
-				- interval (59 * rand() + 20) year
-				- interval (365 * rand()) day
+				- interval 20 year
+				- interval (365 * 60 * rand()) day
 			);
+
+
 		if alive then
 			set cur_death = null;
-
 		else
 			set cur_death := 
-				cur_birth + interval (365 * 19 * rand()) day;
+				cur_birth 
+				+ interval 19 year
+				+ interval (
+					rand() * 
+					datediff(date(now()), (cur_birth + interval 19 year))
+				) day;
 		end if;
 
 
@@ -288,9 +294,14 @@ set @numalive = (
 		from birth_death 
 		where death is null
 	);
-
-
-
 select 
 	(@numalive / count(*)) * 100 as percent_alive
 	from birth_death;
+
+
+-- we can also verify that no one dies under the age of 19 or after today
+select 
+	datediff(death, birth) / 365
+	from birth_death 
+	where (death - birth) / 365 < 19 
+	or death > date(now());

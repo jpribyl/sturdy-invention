@@ -1,0 +1,57 @@
+/usr/bin/java -version
+openjdk version "1.8.0_151"
+OpenJDK Runtime Environment (build 1.8.0_151-8u151-b12-0ubuntu0.16.04.2-b12)
+OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)
+JAVA_VERSION=8
+
+/usr/bin/java -d64 -Dosgi.requiredJavaVersion=1.8 -Dosgi.instance.area.default=@user.home/eclipse-workspace -XX:+UseG1GC -Xms256m -Xmx1024m -jar /opt/eclipse/plugins/org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar --launcher.suppressErrors -debug -clean -refresh -application org.eclim.application
+Install location:
+    file:/opt/eclipse/
+Configuration file:
+    file:/opt/eclipse/configuration/config.ini loaded
+Configuration location:
+    file:/opt/eclipse/configuration/
+Framework located:
+    file:/opt/eclipse/plugins/org.eclipse.osgi_3.12.50.v20170928-1321.jar
+Loading extension: reference:file:org.eclipse.osgi.compatibility.state_1.1.0.v20170516-1513.jar
+	eclipse.properties not found
+Framework classpath:
+    file:/opt/eclipse/plugins/org.eclipse.osgi_3.12.50.v20170928-1321.jar
+    file:/opt/eclipse/plugins/
+    file:/opt/eclipse/plugins/org.eclipse.osgi.compatibility.state_1.1.0.v20170516-1513.jar
+Debug options:
+    file:/home/jp/kod/udemy/java/masterclass/.options not found
+Time to load bundles: 21
+org.eclipse.m2e.logback.configuration: The org.eclipse.m2e.logback.configuration bundle was activated before the state location was initialized.  Will retry after the state location is initialized.
+Starting application: 1996
+org.eclipse.m2e.logback.configuration: Logback config file: /home/jp/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.logback.configuration/logback.1.8.2.20171007-0217.xml
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [bundleresource://500.fwk1121647253:1/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [bundleresource://500.fwk1121647253:2/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]
+org.eclipse.m2e.logback.configuration: Initializing logback
+Application Started: 4858
+2018-02-25 20:04:27,876 INFO  [org.eclim.eclipse.EclimDaemon] Workspace: /home/jp/eclipse-workspace
+2018-02-25 20:04:27,877 INFO  [org.eclim.eclipse.EclimDaemon] Home: /opt/eclipse/plugins/org.eclim_2.7.2/
+2018-02-25 20:04:27,877 INFO  [org.eclim.eclipse.EclimDaemon] Starting eclim...
+2018-02-25 20:04:27,905 INFO  [org.eclim.eclipse.EclimDaemon] Loading plugin org.eclim
+2018-02-25 20:04:27,911 INFO  [org.eclim.eclipse.EclimDaemon] Loading plugin org.eclim.core
+2018-02-25 20:04:28,132 INFO  [org.eclim.plugin.core.CorePlugin] Loading eclim plugins...
+2018-02-25 20:04:28,133 INFO  [org.eclim.plugin.core.CorePlugin] Loading plugin org.eclim.jdt
+2018-02-25 20:04:28,177 INFO  [org.eclim.plugin.core.CorePlugin] Plugins loaded.
+2018-02-25 20:04:28,178 INFO  [org.eclim.eclipse.EclimDaemon] Loaded plugin org.eclim.core
+2018-02-25 20:04:28,178 INFO  [org.eclim.eclipse.EclimDaemon] Waiting on running jobs before starting eclimd...
+2018-02-25 20:04:31,179 INFO  [org.eclim.eclipse.EclimDaemon] Jobs finished.
+2018-02-25 20:04:31,179 INFO  [org.eclim.eclipse.EclimDaemon] Eclim Server Started on: 127.0.0.1:9091
+NGSession 1: 127.0.0.1: org.eclim.command.Main exited with status 1
+2018-02-25 20:05:41,124 INFO  [org.eclim.eclipse.EclimDaemon] Shutting down eclim...
+com.martiansoftware.nailgun.builtins.NGAlias: 0/0
+com.martiansoftware.nailgun.builtins.NGClasspath: 0/0
+com.martiansoftware.nailgun.builtins.NGServerStats: 0/0
+com.martiansoftware.nailgun.builtins.NGStop: 0/0
+com.martiansoftware.nailgun.builtins.NGVersion: 0/0
+org.eclim.command.Main: 1/0
+2018-02-25 20:05:41,125 INFO  [org.eclim.eclipse.EclimDaemon] Stopping plugin org.eclim.core
+2018-02-25 20:05:41,126 INFO  [org.eclim.plugin.core.CorePlugin] Stopping plugin org.eclim.jdt
+2018-02-25 20:05:41,127 INFO  [org.eclim.eclipse.EclimDaemon] Eclim stopped.
