@@ -11,7 +11,7 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 
 ```
 > git clone git@github.com:jpribyl/sturdy-invention.git
-> cd js/modernReact/youtube-app
+> cd sturdy-invention/js/modernReact/youtube-app
 > npm install
 > npm start
 ```
